@@ -3,12 +3,10 @@ import { Sidebar } from '@/components/Home/Sidebar';
 import WithdrawalModal from '@/components/Modals/withdrawal-modal';
 import React from 'react';
 
-export default async function AppLayout({
+export default function AppLayout({
   children,
-  modal,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
 }) {
 
   return (
