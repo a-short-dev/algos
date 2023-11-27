@@ -42,7 +42,7 @@ const LoginForm = () => {
           const { userId, role } = res.data.data;
           if (role === Roles.User) {
             window.localStorage.setItem(`${USER_LOC_KEY}`, userId);
-            //return router.push('/dashboard');
+            return router.push('/dashboard');
           }
         }
       })
@@ -58,7 +58,7 @@ const LoginForm = () => {
     <form
       className='space-y-4'
       onSubmit={onSubmit}>
-      <div className='mb-5 text-2xl md:text-4xl text-slate-800 '>
+      <div className='mb-5 text-2xl p-2 text-white '>
         Enter login details to continue.
       </div>
       <div className='flex flex-col space-y-1'>
@@ -113,7 +113,7 @@ const LoginForm = () => {
         Login
       </button>
 
-      <div className='mb-2 flex items-center justify-center gap-2 text-lg'>
+      <div className='mb-2 flex items-center justify-center gap-2 text-baseyyy'>
         Don&apos;t have an account?
         <Link
           href='onboarding'

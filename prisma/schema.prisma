@@ -11,18 +11,46 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+model Wallet {
+  id      Int   @default(autoincrement())
+  currBal Float @default(0) @map("currenBal") @db.DoublePrecision
+  user    User  @relation(fields: [userId], references: [id])
+  userId  Int
+
+  @@id([id])
+  @@map("wallets")
+}
+
+model Transaction {
+  id        Int      @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  transRef  String   @default(cuid()) @map("trans_ref") @db.VarChar(30)
+  status    TStatus
+  amount    Float    @db.DoublePrecision
+  currBal   Float    @db.DoublePrecision
+  prevBal   Float    @db.DoublePrecision
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+
+  @@id([id])
+  @@map("transations")
+}
+
 model User {
-  id          Int      @default(autoincrement())
-  role        Roles
-  firstName   String   @map("first_name") @db.VarChar(50)
-  lastName    String   @map("last_name") @db.VarChar(50)
-  email       String   @unique @db.VarChar(255)
-  username    String   @unique @db.VarChar(50)
-  phoneNumber String   @unique @map("phone_number") @db.Char(20)
-  password    String   @db.VarChar(150)
-  isSuspended Boolean  @default(false) @map("is_suspended") @db.Boolean
-  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  id           Int           @default(autoincrement())
+  role         Roles
+  firstName    String        @map("first_name") @db.VarChar(50)
+  lastName     String        @map("last_name") @db.VarChar(50)
+  email        String        @unique @db.VarChar(255)
+  username     String        @unique @db.VarChar(50)
+  phoneNumber  String        @unique @map("phone_number") @db.Char(20)
+  password     String        @db.VarChar(150)
+  isSuspended  Boolean       @default(false) @map("is_suspended") @db.Boolean
+  createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+  transactions Transaction[]
+  Wallet       Wallet[]
 
   @@id([id])
   @@map("users")
@@ -50,4 +78,10 @@ enum Roles {
   Super
   Administrator
   User
+}
+
+enum TStatus {
+  PENDING
+  COMPLETED
+  FAILED
 }

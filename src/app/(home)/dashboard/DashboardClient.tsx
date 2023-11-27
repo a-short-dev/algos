@@ -1,9 +1,13 @@
 'use client';
 
+
 import useDepositModal from '@/hooks/useDepositModal';
+import Link from 'next/link';
+
 
 export default function DashboardClient() {
   const depositModal = useDepositModal();
+
 
   return (
     <section className='w-full  p-5'>
@@ -13,9 +17,11 @@ export default function DashboardClient() {
             <div className='text-lg mb-4 text-gray-400'>Available Balance</div>
             <div className='flex items-center justify-between'>
               <div className='text-2xl font-bold'>$ 55,578</div>
-              <button className='bg-brand-yellow py-2 px-4 text-white/95 rounded'>
+              <Link
+                href='?showModalW=y'
+                className='bg-brand-yellow py-2 px-4 text-white/95 rounded'>
                 Withdraw
-              </button>
+              </Link>
             </div>
           </div>
         </div>

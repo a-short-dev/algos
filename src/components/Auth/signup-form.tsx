@@ -63,162 +63,167 @@ const SignupForm = () => {
     <form
       className='space-y-4'
       onSubmit={onSubmit}>
-      <div className='mb-5 text-2xl md:text-4xl text-slate-800 '>
+      <div className='mb-5 text-2xl  text-white '>
         Create your account.
       </div>
-      <>
-        <div className='flex flex-col space-y-1'>
-          <label
-            className='text-sm uppercase text-gray-600'
-            htmlFor='firstName'>
-            first name
-          </label>
-          <input
-            autoComplete='on'
-            id='firstName'
-            type='text'
-            {...register('firstName')}
-            className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
-              errors['firstName']
-                ? 'border-red-300 border-2'
-                : 'focus:ring-offset-brand-yellow ring-brand-yellow'
-            }`}
-          />
+
+      <div className='space-y-4'>
+        <div className='flex md:flex-row flex-col  md:gap-5'>
+          <div className='flex flex-col space-y-1'>
+            <label
+              className='text-sm uppercase text-gray-600'
+              htmlFor='firstName'>
+              first name
+            </label>
+            <input
+              autoComplete='on'
+              id='firstName'
+              type='text'
+              {...register('firstName')}
+              className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
+                errors['firstName']
+                  ? 'border-red-300 border-2'
+                  : 'focus:ring-offset-brand-yellow ring-brand-yellow'
+              }`}
+            />
+            {errors['firstName'] && (
+              <span className='text-xs text-red-400'>
+                <>{errors['firstName']?.message}</>
+              </span>
+            )}
+          </div>
+
+          <div className='flex flex-col space-y-1'>
+            <label
+              className='text-sm uppercase text-gray-600'
+              htmlFor='lastName'>
+              last name
+            </label>
+            <input
+              autoComplete='on'
+              id='lastName'
+              type='text'
+              {...register('lastName')}
+              className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
+                errors['lastName']
+                  ? 'border-red-300 border-2'
+                  : 'focus:ring-offset-brand-yellow ring-brand-yellow'
+              }`}
+            />
+
+            {errors['lastName'] && (
+              <span className='text-xs text-red-400'>
+                <>{errors['lastName']?.message}</>
+              </span>
+            )}
+          </div>
         </div>
-        {errors['firstName'] && (
-          <span className='text-xs text-red-400'>
-            <>{errors['firstName']?.message}</>
-          </span>
-        )}
-      </>
 
-      <div className='flex flex-col space-y-1'>
-        <label
-          className='text-sm uppercase text-gray-600'
-          htmlFor='lastName'>
-          last name
-        </label>
-        <input
-          autoComplete='on'
-          id='lastName'
-          type='text'
-          {...register('lastName')}
-          className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
-            errors['lastName']
-              ? 'border-red-300 border-2'
-              : 'focus:ring-offset-brand-yellow ring-brand-yellow'
-          }`}
-        />
-        <>
-          {errors['lastName'] && (
-            <span className='text-xs text-red-400'>
-              <>{errors['lastName']?.message}</>
-            </span>
-          )}
-        </>
-      </div>
+        <div className='flex md:flex-row flex-col md:gap-5'>
+          <div className='flex flex-col space-y-1'>
+            <label
+              className='text-sm uppercase text-gray-600'
+              htmlFor='email'>
+              email
+            </label>
+            <input
+              autoComplete='on'
+              type='email'
+              id='email'
+              {...register('email')}
+              className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
+                errors['email']
+                  ? 'border-red-300 border-2'
+                  : 'focus:ring-offset-brand-yellow ring-brand-yellow'
+              }`}
+            />
 
-      <div className='flex flex-col space-y-1'>
-        <label
-          className='text-sm uppercase text-gray-600'
-          htmlFor='email'>
-          email
-        </label>
-        <input
-          autoComplete='on'
-          type='email'
-          id='email'
-          {...register('email')}
-          className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
-            errors['email']
-              ? 'border-red-300 border-2'
-              : 'focus:ring-offset-brand-yellow ring-brand-yellow'
-          }`}
-        />
-        <>
-          {errors['email'] && (
-            <span className='text-xs text-red-400'>
-              <>{errors['email']?.message}</>
-            </span>
-          )}
-        </>
-      </div>
-      <div className='flex flex-col space-y-1'>
-        <label
-          className='text-sm uppercase text-gray-600'
-          htmlFor='phoneNumber'>
-          phone
-        </label>
-        <input
-          autoComplete='on'
-          type='tel'
-          id='phoneNumber'
-          {...register('phoneNumber')}
-          className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
-            errors['phoneNumber']
-              ? 'border-red-300 border-2'
-              : 'focus:ring-offset-brand-yellow ring-brand-yellow'
-          }`}
-        />
-        <>
-          {errors['phoneNumber'] && (
-            <span className='text-xs text-red-400'>
-              <>{errors['phoneNumber']?.message}</>
-            </span>
-          )}
-        </>
-      </div>
+            {errors['email'] && (
+              <span className='text-xs text-red-400'>
+                <>{errors['email']?.message}</>
+              </span>
+            )}
+          </div>
+          <div className='flex flex-col space-y-1'>
+            <label
+              className='text-sm uppercase text-gray-600'
+              htmlFor='phoneNumber'>
+              phone
+            </label>
+            <input
+              autoComplete='on'
+              type='tel'
+              id='phoneNumber'
+              {...register('phoneNumber')}
+              className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
+                errors['phoneNumber']
+                  ? 'border-red-300 border-2'
+                  : 'focus:ring-offset-brand-yellow ring-brand-yellow'
+              }`}
+            />
+            <>
+              {errors['phoneNumber'] && (
+                <span className='text-xs text-red-400'>
+                  <>{errors['phoneNumber']?.message}</>
+                </span>
+              )}
+            </>
+          </div>
+        </div>
 
-      <div className='flex flex-col space-y-1'>
-        <label
-          className='text-sm uppercase text-gray-600'
-          htmlFor='password'>
-          password
-        </label>
-        <input
-          autoComplete='on'
-          id='password'
-          type='password'
-          {...register('password')}
-          className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
-            errors['password']
-              ? 'border-red-300 border-2'
-              : 'focus:ring-offset-brand-yellow ring-brand-yellow'
-          }`}
-        />
-        <>
-          {errors['password'] && (
-            <span className='text-xs text-red-400'>
-              <>{errors['password']?.message}</>
-            </span>
-          )}
-        </>
-      </div>
+        <div className='flex md:flex-row flex-col  md:gap-5'>
+          <div className='flex flex-col space-y-1'>
+            <label
+              className='text-sm uppercase text-gray-600'
+              htmlFor='password'>
+              password
+            </label>
+            <input
+              autoComplete='on'
+              id='password'
+              type='password'
+              {...register('password')}
+              className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
+                errors['password']
+                  ? 'border-red-300 border-2'
+                  : 'focus:ring-offset-brand-yellow ring-brand-yellow'
+              }`}
+            />
+            <>
+              {errors['password'] && (
+                <span className='text-xs text-red-400'>
+                  <>{errors['password']?.message}</>
+                </span>
+              )}
+            </>
+          </div>
 
-      <div className='flex flex-col space-y-1'>
-        <label
-          className='text-sm uppercase text-gray-600'
-          htmlFor='confirmPassword'>
-          confirm password
-        </label>
-        <input
-          autoComplete='on'
-          id='confirmPassword'
-          type='password'
-          {...register('confirmPassword')}
-          className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
-            errors['confirmPassword']
-              ? 'border-red-300 border-2'
-              : 'focus:ring-offset-brand-yellow ring-brand-yellow'
-          }`}
-        />
-        <>
-          {errors['confirmPassword'] && (
-            <span className='text-xs text-red-400'>
-              <>{errors['confirmPassword']?.message}</>
-            </span>
-          )}
-        </>
+          <div className='flex flex-col space-y-1'>
+            <label
+              className='text-sm uppercase text-gray-600'
+              htmlFor='confirmPassword'>
+              confirm password
+            </label>
+            <input
+              autoComplete='on'
+              id='confirmPassword'
+              type='password'
+              {...register('confirmPassword')}
+              className={`border focus:ring-1 rounded p-2 focus:outline-none outline-none ${
+                errors['confirmPassword']
+                  ? 'border-red-300 border-2'
+                  : 'focus:ring-offset-brand-yellow ring-brand-yellow'
+              }`}
+            />
+            <>
+              {errors['confirmPassword'] && (
+                <span className='text-xs text-red-400'>
+                  <>{errors['confirmPassword']?.message}</>
+                </span>
+              )}
+            </>
+          </div>
+        </div>
       </div>
       <button
         disabled={isSubmitting}

@@ -1,4 +1,4 @@
-import { FaDashcube } from 'react-icons/fa';
+import { FaDashcube, FaHome } from 'react-icons/fa';
 import NavLink from '../Navlink';
 import { IconType } from 'react-icons';
 
@@ -6,7 +6,7 @@ const navItem = [
   {
     label: 'Dashboard',
     slug: 'dashboard',
-    icon: <FaDashcube />,
+    icon: <FaHome />,
   },
   {
     label: 'Transactions',
