@@ -17,11 +17,11 @@ export async function POST(req: NextRequest) {
     if (!isValidPassword) {
       throw new Error('Invalid credentials');
     }
-
-    return NextResponse.json(
-      { message: 'success', data: user.role },
-      { status: 200 }
-    );
+    const data = {
+      userId: user.id,
+      role: user.role,
+    };
+    return NextResponse.json({ message: 'success', data }, { status: 200 });
   } catch (error: any) {
     if (error.message === 'Invalid credentials') {
       return NextResponse.json({ error: error.message }, { status: 400 });

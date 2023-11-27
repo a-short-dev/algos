@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
+import { USER_LOC_KEY } from '@/libs/contants';
 
 const SignupForm = () => {
   const router = useRouter();
@@ -41,12 +42,14 @@ const SignupForm = () => {
     register,
   } = useForm<Schema>({ mode: 'all', resolver });
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async (user) => {
     await axios
-      .post('/api/onboarding', data)
+      .post('/api/onboarding', user)
       .then((res) => {
         if (res.data) {
-          toast.success('Login successful');
+          const data = res.data;
+          toast.success('Registration successful');
+          window.localStorage.setItem(`${USER_LOC_KEY}`, data.data);
           return router.push('/dashboard');
         }
       })

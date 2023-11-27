@@ -1,16 +1,20 @@
 import { prisma } from '@/libs/db';
+import { Roles } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
+  const { confirmPassword, ...newBody } = body;
   try {
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
-        ...body,
+        ...newBody,
+        role: Roles.User,
+        username: body.email,
       },
     });
-    return NextResponse.json({ message: 'success' });
+    return NextResponse.json({ message: 'success', data: user.id });
   } catch (error) {
     if (
       error instanceof PrismaClientKnownRequestError &&

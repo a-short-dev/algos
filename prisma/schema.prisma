@@ -20,7 +20,7 @@ model User {
   username    String   @unique @db.VarChar(50)
   phoneNumber String   @unique @map("phone_number") @db.Char(20)
   password    String   @db.VarChar(150)
-  isSuspended Int      @map("is_suspended") @db.SmallInt
+  isSuspended Boolean  @default(false) @map("is_suspended") @db.Boolean
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
@@ -37,9 +37,9 @@ model Admin {
   username     String   @unique @db.VarChar(50)
   phoneNumber  String   @unique @map("phone_number") @db.Char(20)
   password     String   @db.VarChar(150)
-  isSuspended  Int      @map("is_suspended") @db.SmallInt
+  isSuspended  Boolean  @default(false) @map("is_suspended") @db.Boolean
   isSuperAdmin Boolean  @default(false) @map("is_super_admin")
-  createdAt    DateTime @default(now()) @map("created_at")@db.Timestamptz(6)
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@id([id])
