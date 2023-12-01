@@ -1,22 +1,21 @@
 'use client';
 
-
 import useDepositModal from '@/hooks/useDepositModal';
 import Link from 'next/link';
-
 
 export default function DashboardClient() {
   const depositModal = useDepositModal();
 
-
   return (
-    <section className='w-full  p-5'>
+    <section className='w-full p-5'>
       <div className='flex flex-col md:flex-row items-center  gap-4 justify-between   w-full'>
-        <div className='bg-white h-32 c p-4 rounded-md  w-full'>
-          <div className=' w-full h-full p-2'>
-            <div className='text-lg mb-4 text-gray-400'>Available Balance</div>
-            <div className='flex items-center justify-between'>
-              <div className='text-2xl font-bold'>$ 55,578</div>
+        <div className='bg-white h-auto c p-4 rounded-md  w-full'>
+          <div className='w-full h-full flex-col flex justify-between p-2'>
+            <div className='text-base mb-4 text-gray-400'>
+              Available Balance
+            </div>
+            <div className='flex flex-wrap items-center justify-between'>
+              <div className='text-xl font-bold'>$ 55,578</div>
               <Link
                 href='?showModalW=y'
                 className='bg-brand-yellow py-2 px-4 text-white/95 rounded'>
@@ -26,23 +25,23 @@ export default function DashboardClient() {
           </div>
         </div>
 
-        <div className='bg-white h-32 p-4 rounded-md  w-full'>
-          <div className=' w-full h-full p-2'>
-            <div className='text-lg mb-4 text-gray-400'>Bonus Balance</div>
+        <div className='bg-white h-auto p-4 rounded-md  w-full'>
+          <div className='w-full h-full flex-col flex justify-between p-2'>
+            <div className='text-base mb-4 text-gray-400'>Total Bonus</div>
             <div className='text-2xl font-bold'>$ 50,578</div>
           </div>
         </div>
 
-        <div className='bg-white h-32 p-4 rounded-md  w-full'>
+        <div className='bg-white h-auto p-4 rounded-md  w-full'>
           <div className=' w-full h-full p-2'>
-            <div className='text-lg mb-4 text-gray-400'>Total Deposits</div>
-            <div className='flex items-center justify-between'>
-              <div className='text-2xl font-bold'>$ 25,000</div>
-              <button
-                onClick={depositModal.onOpen}
+            <div className='text-base mb-4 text-gray-400'>Total Deposits</div>
+            <div className='flex flex-wrap items-center gap-2 justify-between'>
+              <div className='text-xl font-bold'>$ 25,000</div>
+              <Link
+                href='?showModalD=y'
                 className='bg-blue-400 py-2 px-4 text-white/95 rounded'>
                 Deposit
-              </button>
+              </Link>
             </div>
           </div>
         </div>

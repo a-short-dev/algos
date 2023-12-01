@@ -6,11 +6,11 @@ import zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
-export default function WithdrawalModal() {
+export default function DepositModal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const modalRef = useRef<null | HTMLDialogElement>(null);
-  const showModal = searchParams.get('showModalW');
+  const showModal = searchParams.get('showModalD');
   useEffect(() => {
     if (showModal === 'y') {
       modalRef.current?.showModal();
@@ -28,19 +28,15 @@ export default function WithdrawalModal() {
     closeDialog();
   };
 
-  const currentBal = 55000;
-  const minW = 1999;
+  const minD = 5000;
   const schema = zod.object({
     amount: zod
       .string()
       .refine((x) => x !== '', {
         message: 'Please enter an amount',
       })
-      .refine((x) => parseFloat(x) > minW, {
-        message: `Minimum withdrawal is ${minW}`,
-      })
-      .refine((x) => parseFloat(x) <= currentBal, {
-        message: 'Amount should not be greater than the current balance.',
+      .refine((x) => parseFloat(x) >= minD, {
+        message: `minimum deposit is ${minD}`,
       }),
   });
   type Schema = zod.infer<typeof schema>;
@@ -88,12 +84,12 @@ export default function WithdrawalModal() {
               </>
             </div>
             <button className='bg-brand-yellow flex items-center justify-center p-2 rounded hover:bg-opacity-60 text-white text-base font-medium w-full'>
-              Withdraw
+              Deposit
             </button>
           </form>
           <button
             onClick={closeDialog}
-            className='bg-brand-yellow flex items-center justify-center p-2 rounded hover:bg-opacity-60 text-white text-base font-medium w-full'>
+            className='bg-red-300 mt-5 flex items-center justify-center p-2 rounded hover:bg-opacity-60 text-white text-base font-medium w-full'>
             Cancel
           </button>
         </div>

@@ -1,19 +1,32 @@
 -- CreateEnum
-CREATE TYPE "Roles" AS ENUM ('Super', 'Administrator', 'User');
+CREATE TYPE "Roles" AS ENUM ('SUPER', 'ADMIN', 'USER');
 
 -- CreateEnum
 CREATE TYPE "TStatus" AS ENUM ('PENDING', 'COMPLETED', 'FAILED');
+
+-- CreateEnum
+CREATE TYPE "TType" AS ENUM ('DEPOSIT', 'WITHDRAWAL');
+
+-- CreateTable
+CREATE TABLE "InvesmentPlan" (
+    "planName" TEXT NOT NULL,
+    "planPercentage" DECIMAL(65,30) NOT NULL,
+
+    CONSTRAINT "InvesmentPlan_pkey" PRIMARY KEY ("planName")
+);
 
 -- CreateTable
 CREATE TABLE "transations" (
     "id" SERIAL NOT NULL,
     "created_at" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ(6) NOT NULL,
-    "transRef" VARCHAR(30) NOT NULL,
+    "trans_ref" VARCHAR(30) NOT NULL,
+    "type" "TType" NOT NULL,
     "status" "TStatus" NOT NULL,
-    "amount" DOUBLE PRECISION NOT NULL DEFAULT 0,
-    "currBal" DOUBLE PRECISION NOT NULL DEFAULT 0,
-    "prevBal" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "amount" DECIMAL(65,30) NOT NULL,
+    "bal" DECIMAL(65,30) NOT NULL,
+    "bonus" DECIMAL(65,30),
+    "prev_bal" DECIMAL(65,30) NOT NULL,
     "userId" INTEGER NOT NULL,
 
     CONSTRAINT "transations_pkey" PRIMARY KEY ("id")
@@ -53,6 +66,9 @@ CREATE TABLE "admins" (
 
     CONSTRAINT "admins_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "InvesmentPlan_planName_key" ON "InvesmentPlan"("planName");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");

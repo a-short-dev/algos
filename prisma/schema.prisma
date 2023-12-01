@@ -11,14 +11,12 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model Wallet {
-  id      Int   @default(autoincrement())
-  currBal Float @default(0) @map("currenBal") @db.DoublePrecision
-  user    User  @relation(fields: [userId], references: [id])
-  userId  Int
+model InvesmentPlan {
+  planName       String
+  planPercentage Decimal
 
-  @@id([id])
-  @@map("wallets")
+  @@id([planName])
+  @@unique([planName])
 }
 
 model Transaction {
@@ -26,10 +24,10 @@ model Transaction {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
   transRef  String   @default(cuid()) @map("trans_ref") @db.VarChar(30)
+  type      TType
   status    TStatus
-  amount    Float    @db.DoublePrecision
-  currBal   Float    @db.DoublePrecision
-  prevBal   Float    @db.DoublePrecision
+  amount    Decimal
+  bouns     Decimal?
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
 
@@ -50,7 +48,6 @@ model User {
   createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt    DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
   transactions Transaction[]
-  Wallet       Wallet[]
 
   @@id([id])
   @@map("users")
@@ -75,13 +72,18 @@ model Admin {
 }
 
 enum Roles {
-  Super
-  Administrator
-  User
+  SUPER
+  ADMIN
+  USER
 }
 
 enum TStatus {
   PENDING
   COMPLETED
   FAILED
+}
+
+enum TType {
+  DEPOSIT
+  WITHDRAWAL
 }

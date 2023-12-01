@@ -40,9 +40,10 @@ const LoginForm = () => {
         if (res.data) {
           toast.success('Login successful');
           const { userId, role } = res.data.data;
-          if (role === Roles.User) {
+          if (role === Roles.USER) {
             window.localStorage.setItem(`${USER_LOC_KEY}`, userId);
-            return router.push('/dashboard');
+            router.push('/dashboard');
+            return;
           }
         }
       })

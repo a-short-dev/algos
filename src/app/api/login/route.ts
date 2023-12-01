@@ -1,5 +1,6 @@
 import { prisma } from '@/libs/db';
 import { NextRequest, NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -19,10 +20,14 @@ export async function POST(req: NextRequest) {
     }
     const data = {
       userId: user.id,
-      role: user.role
-    }
+      role: user.role,
+    };
+    cookies().set('userToken', `${data.userId}`, {
+      maxAge: 60 * 60,
+      path: '/',
+    });
     return NextResponse.json(
-      { message: 'success', data: user.role },
+      { message: 'success', data: data },
       { status: 200 }
     );
   } catch (error: any) {

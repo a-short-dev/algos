@@ -19,7 +19,7 @@ const navItem = [
 ];
 export const Sidebar = () => {
   return (
-    <aside className='hidden md:block md:fixed bg-gray-400/75 md:w-60 md:z-30 h-full'>
+    <aside className='hidden md:block md:fixed bg-gray-400/75 md:w-52 xl:w-60 md:z-30 h-full'>
       <nav className='p-6 mt-16 flex flex-col gap-y-2'>
         {navItem.map((item, index) => (
           <NavLink
