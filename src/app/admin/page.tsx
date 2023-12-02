@@ -1,9 +1,5 @@
+async function getUsers() {}
 
-async function getUsers(){}
-
-export async function AdminPage(){
-
-  return <div>
-
-  </div>
+export default async function AdminPage() {
+  return <div></div>;
 }
