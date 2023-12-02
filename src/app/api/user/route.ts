@@ -3,7 +3,6 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
-  const userId = cookies().get('userToken');
   const { searchParams } = new URL(req.url);
   const id = searchParams.get('id');
   const user = await prisma.user.findUnique({
