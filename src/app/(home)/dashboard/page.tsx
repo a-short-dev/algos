@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import axios from 'axios';
 import { BASE_URL } from '@/libs/contants';
 
-export async function getBalance() {
+async function getBalance() {
   try {
     const userId = cookies().get('userToken');
     const user = await axios.get(
