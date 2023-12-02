@@ -21,6 +21,6 @@ import { BASE_URL } from '@/libs/contants';
 } 
  */
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
   return <div>dash</div>;
 }
