@@ -19,10 +19,5 @@ async function getBalance() {
 }
 
 export default async function DashboardPage() {
-  const { balance } = await getBalance();
-  return (
-    <>
-      <div></div>
-    </>
-  );
+  return <div>dash</div>;
 }
