@@ -11,7 +11,7 @@ async function getBalance() {
       `${BASE_URL}/api/transactions/get-balance?id=${userId?.value}`
     );
     const { currentBal } = user.data;
-    console.log(currentBal)
+    console.log(currentBal);
     return { balance: currentBal };
   } catch (error: any) {
     throw Error(error.message);
@@ -22,9 +22,7 @@ export default async function DashboardPage() {
   const { balance } = await getBalance();
   return (
     <>
-      <DashboardClient
-       
-      />
+      <div></div>
     </>
   );
 }
