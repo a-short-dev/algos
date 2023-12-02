@@ -4,7 +4,9 @@ import { cookies } from 'next/headers';
 import axios from 'axios';
 import { BASE_URL } from '@/libs/contants';
 
-async function getBalance() {
+/**
+ * 
+ *async function getBalance() {
   try {
     const userId = cookies().get('userToken');
     const user = await axios.get(
@@ -16,7 +18,8 @@ async function getBalance() {
   } catch (error: any) {
     throw Error(error.message);
   }
-}
+} 
+ */
 
 export default async function DashboardPage() {
   return <div>dash</div>;
