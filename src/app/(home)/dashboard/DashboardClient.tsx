@@ -9,11 +9,7 @@ interface DashProps {
   deposit?: string;
 }
 
-export default function DashboardClient({
-  balance,
-  bonus,
-  deposit,
-}: DashProps) {
+export function DashboardClient({ balance, bonus, deposit }: DashProps) {
   return (
     <>
       <section className='w-full p-5'>
