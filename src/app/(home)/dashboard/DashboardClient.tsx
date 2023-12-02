@@ -4,7 +4,7 @@ import WithdrawalModal from '@/components/Modals/withdrawal-modal';
 import Link from 'next/link';
 
 interface DashProps {
-  balance: number;
+  balance?: number;
   bonus?: string;
   deposit?: string;
 }
