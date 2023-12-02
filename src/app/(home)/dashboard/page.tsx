@@ -23,7 +23,7 @@ export default async function DashboardPage() {
   return (
     <>
       <DashboardClient
-        balance={balance}
+       
       />
     </>
   );
