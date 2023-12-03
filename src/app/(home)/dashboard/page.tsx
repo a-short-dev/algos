@@ -9,9 +9,9 @@ import toast from 'react-hot-toast';
 async function getTransactitons(id: number): Promise<any> {
   const user = await axios.get(`${BASE_URL}/api/transactions?id=${id}`);
   if (user.status === 200) {
-    const { balance, bonus, deposit, recentTransactions } = user.data.data;
+    const { balance, bonus, deposits, recentTransactions } = user.data.data;
     console.log(recentTransactions)
-    return { balance, bonus, deposit, recentTransactions };
+    return { balance, bonus, deposits, recentTransactions };
   } else {
     toast.error('something went wrong');
   }
@@ -19,7 +19,7 @@ async function getTransactitons(id: number): Promise<any> {
 
 export default async function Dashboard() {
   const id = Number(cookies().get('userToken')?.value || 0);
-  const { balance, bonus, deposit, recentTransactions } =
+  const { balance, bonus, deposits, recentTransactions } =
     await getTransactitons(id);
   return (
     <>
@@ -52,7 +52,7 @@ export default async function Dashboard() {
             <div className=' w-full h-full p-2'>
               <div className='text-base mb-4 text-gray-400'>Total Deposits</div>
               <div className='flex flex-wrap items-center gap-2 justify-between'>
-                <div className='text-xl font-bold'>$ {deposit ?? 0}</div>
+                <div className='text-xl font-bold'>$ {deposits ?? 0}</div>
                 <Link
                   href='?showModalD=y'
                   className='bg-blue-400 py-2 px-4 text-white/95 rounded'>

@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
       data: {
         balance: currentBal,
         bonus: totalBonus,
-        deposist: totalDeposits,
+        deposits: totalDeposits,
         recentTransactions,
       },
     },
