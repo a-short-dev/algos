@@ -1,6 +1,7 @@
 import { prisma } from '@/libs/db';
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { Roles } from '@prisma/client';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -22,10 +23,17 @@ export async function POST(req: NextRequest) {
       userId: user.id,
       role: user.role,
     };
-    cookies().set('userToken', `${data.userId}`, {
-      maxAge: 60 * 60,
-      path: '/',
-    });
+    if (data.role === Roles.USER) {
+      cookies().set('userToken', `${data.userId}`, {
+        maxAge: 60 * 60,
+        path: '/',
+      });
+    } else {
+      cookies().set('adminToken', `${data.userId}`, {
+        maxAge: 60 * 60,
+        path: '/',
+      });
+    }
     return NextResponse.json(
       { message: 'success', data: data },
       { status: 200 }

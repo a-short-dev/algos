@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import axios, { AxiosError } from 'axios';
 import { Roles } from '@prisma/client';
 import { useRouter } from 'next/navigation';
-import { USER_LOC_KEY } from '@/libs/contants';
+import { ADMIN_LOC_KEY, USER_LOC_KEY } from '@/libs/contants';
 
 const LoginForm = () => {
   const router = useRouter();
@@ -42,8 +42,10 @@ const LoginForm = () => {
           const { userId, role } = res.data.data;
           if (role === Roles.USER) {
             window.localStorage.setItem(`${USER_LOC_KEY}`, userId);
-            router.push('/dashboard');
-            return;
+            return router.push('/dashboard');
+          } else {
+            window.localStorage.setItem(`${ADMIN_LOC_KEY}`, userId);
+            return router.push('/overview');
           }
         }
       })

@@ -6,14 +6,14 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL") // uses connection pooling
   //directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model InvesmentPlan {
   planName       String
-  planPercentage Decimal
+  
 
   @@id([planName])
   @@unique([planName])
@@ -38,6 +38,8 @@ model Transaction {
 model User {
   id           Int           @default(autoincrement())
   role         Roles
+  isSuperAdmin Boolean       @default(false) @map("is_super_admin")
+  isAdmin      Boolean       @default(false) @map("is_admin")
   firstName    String        @map("first_name") @db.VarChar(50)
   lastName     String        @map("last_name") @db.VarChar(50)
   email        String        @unique @db.VarChar(255)

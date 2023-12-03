@@ -26,11 +26,13 @@ export default async function HomeLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const id = Number(cookies().get('userToken')?.value || null);
+  const id = Number(
+    cookies().get('userToken')?.value || cookies().get('adminToken')?.value || 0
+  );
   const { firstName, lastName, email } = await getUserDetails(id);
 
   return (
-    <section className='bg-gray-400 flex md:h-full'>
+    <section className='bg-gray-400 flex '>
       <Sidebar />
       <div className='relative md:pl-52 xl:pl-60 bg-gray-200 w-full'>
         <Header firstName={firstName} />

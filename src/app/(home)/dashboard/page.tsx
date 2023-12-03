@@ -34,7 +34,7 @@ export default async function Dashboard() {
               <div className='flex flex-wrap items-center justify-between'>
                 <div className='text-xl font-bold'>$ {balance ?? 0}</div>
                 <Link
-                  href={`?showModalW=y?bal`}
+                  href={`?showModalW=y`}
                   className='bg-brand-yellow py-2 px-4 text-white/95 rounded'>
                   Withdraw
                 </Link>
@@ -44,7 +44,9 @@ export default async function Dashboard() {
 
           <div className='bg-white h-auto p-4 rounded-md  w-full'>
             <div className='w-full h-full flex-col flex justify-between p-2'>
-              <div className='text-base mb-4 text-gray-400'>Total Bonus</div>
+              <div className='text-base mb-4 text-gray-400'>
+                Total Bonus Received
+              </div>
               <div className='text-2xl font-bold'>$ {bonus ?? 0}</div>
             </div>
           </div>
@@ -64,56 +66,58 @@ export default async function Dashboard() {
           </div>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-3 w-full gap-4 mt-10 md:mt-20'>
-          <div className='bg-white/60 relative rounded-md col-spa md:col-span-2 p-4'>
+          <div className='bg-white/60 relative rounded-md col-spa md:col-span-2 p-4 '>
             <h4 className='text-lg md:text-2xl'>Recent Transactions</h4>
             <hr className='my-4 ' />
-            <table className='min-w-full divide-y divide-gray-200'>
-              <thead>
-                <tr>
-                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Type
-                  </th>
-                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Amount
-                  </th>
-                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    Bonus
-                  </th>
-                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                    STATUS
-                  </th>
-                </tr>
-              </thead>
-              <tbody className='bg-white divide-y text-base divide-gray-200'>
-                {recentTransactions.map((transaction: any, index: number) => (
-                  <tr key={index}>
-                    <td className='px-6 py-4 whitespace-nowrap'>
-                      {transaction.type}
-                    </td>
-                    <td className='px-6 py-4 whitespace-nowrap'>
-                      {transaction.amount}
-                    </td>
-                    <td className='px-6 py-4 whitespace-nowrap'>
-                      {transaction.bonus || '-'}
-                    </td>
-                    <td
-                      className={`px-6 py-4 whitespace-nowrap ${
-                        transaction.status === TStatus.PENDING
-                          ? 'bg-orange-300 text-white'
-                          : transaction.status === TStatus.FAILED
-                          ? 'bg-red-300'
-                          : 'bg-green-200'
-                      }`}>
-                      {transaction.status}
-                    </td>
+            <div className='overflow-x-scroll'>
+              <table className='min-w-full divide-y  overflow-x-scroll divide-gray-200'>
+                <thead>
+                  <tr>
+                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                      Type
+                    </th>
+                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                      Amount
+                    </th>
+                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                      Bonus
+                    </th>
+                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                      STATUS
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className='bg-white divide-y text-base divide-gray-200'>
+                  {recentTransactions.map((transaction: any, index: number) => (
+                    <tr key={index}>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        {transaction.type}
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        {transaction.amount}
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        {transaction.bonus || '-'}
+                      </td>
+                      <td
+                        className={`px-6 py-4 whitespace-nowrap ${
+                          transaction.status === TStatus.PENDING
+                            ? 'bg-orange-300 text-white'
+                            : transaction.status === TStatus.FAILED
+                            ? 'bg-red-300'
+                            : 'bg-green-200'
+                        }`}>
+                        {transaction.status}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <div className='bg-white/80 rounded-md col-span-1 w-full'>
-            <div className='p-4'>
+          <div className='bg-white/80 h-auto rounded-md col-span-1 w-full'>
+            <div className='p-4 h-auto'>
               <h4 className='text-lg md:text-2xl'>Current plan</h4>
             </div>
           </div>

@@ -87,13 +87,37 @@ export default function WithdrawalModal() {
                 )}
               </>
             </div>
-            <button className='bg-brand-yellow flex items-center justify-center p-2 rounded hover:bg-opacity-60 text-white text-base font-medium w-full'>
+            <button
+              className='
+              bg-brand-yellow 
+              flex 
+              items-center 
+              justify-center 
+              p-2 rounded 
+              hover:bg-opacity-60 
+              text-white 
+              text-base 
+              font-medium 
+              w-full'>
               Withdraw
             </button>
           </form>
           <button
             onClick={closeDialog}
-            className='bg-brand-yellow flex items-center justify-center p-2 rounded hover:bg-opacity-60 text-white text-base font-medium w-full'>
+            className='
+            border 
+            border-brand-yellow 
+            mt-4 
+            text-brand-yellow 
+            flex 
+            items-center 
+            justify-center 
+            p-2 
+            rounded 
+            hover:bg-opacity-60  
+            text-base 
+            font-medium 
+            w-full'>
             Cancel
           </button>
         </div>
