@@ -1,6 +1,7 @@
 import DepositModal from '@/components/Modals/deposit-modal';
 import WithdrawalModal from '@/components/Modals/withdrawal-modal';
 import { BASE_URL } from '@/libs/contants';
+import { TStatus, TType } from '@prisma/client';
 import axios from 'axios';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
@@ -10,7 +11,7 @@ async function getTransactitons(id: number): Promise<any> {
   const user = await axios.get(`${BASE_URL}/api/transactions?id=${id}`);
   if (user.status === 200) {
     const { balance, bonus, deposits, recentTransactions } = user.data.data;
-    console.log(recentTransactions)
+
     return { balance, bonus, deposits, recentTransactions };
   } else {
     toast.error('something went wrong');
@@ -66,21 +67,54 @@ export default async function Dashboard() {
           <div className='bg-white/60 relative rounded-md col-spa md:col-span-2 p-4'>
             <h4 className='text-lg md:text-2xl'>Recent Transactions</h4>
             <hr className='my-4 ' />
-            {recentTransactions.map((tx: any, index: number) => (
-              <div
-                className='flex w-full justify-between px-4'
-                key={index}>
-                <div>{tx.amount}</div>
-                <div>{tx.status}</div>
-                <div>{tx.type}</div>
-              </div>
-            ))}
+            <table className='min-w-full divide-y divide-gray-200'>
+              <thead>
+                <tr>
+                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                    Type
+                  </th>
+                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                    Amount
+                  </th>
+                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                    Bonus
+                  </th>
+                  <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                    STATUS
+                  </th>
+                </tr>
+              </thead>
+              <tbody className='bg-white divide-y text-base divide-gray-200'>
+                {recentTransactions.map((transaction: any, index: number) => (
+                  <tr key={index}>
+                    <td className='px-6 py-4 whitespace-nowrap'>
+                      {transaction.type}
+                    </td>
+                    <td className='px-6 py-4 whitespace-nowrap'>
+                      {transaction.amount}
+                    </td>
+                    <td className='px-6 py-4 whitespace-nowrap'>
+                      {transaction.bonus || '-'}
+                    </td>
+                    <td
+                      className={`px-6 py-4 whitespace-nowrap ${
+                        transaction.status === TStatus.PENDING
+                          ? 'bg-orange-300 text-white'
+                          : transaction.status === TStatus.FAILED
+                          ? 'bg-red-300'
+                          : 'bg-green-200'
+                      }`}>
+                      {transaction.status}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
           <div className='bg-white/80 rounded-md col-span-1 w-full'>
             <div className='p-4'>
               <h4 className='text-lg md:text-2xl'>Current plan</h4>
-              <div></div>
             </div>
           </div>
         </div>

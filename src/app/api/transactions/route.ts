@@ -32,8 +32,9 @@ export async function GET(req: NextRequest) {
   );
 
   const recentTransactions = await prisma.transaction.findMany({
-    where: { id },
-    take: 10,
+    where: { userId: id },
+    take: 4,
+    orderBy: { createdAt: 'desc' },
     select: { amount: true, status: true, type: true },
   });
 
