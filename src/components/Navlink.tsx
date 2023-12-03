@@ -5,7 +5,7 @@ import React from 'react';
 import { IconType } from 'react-icons';
 
 interface NavLinkProps {
-  slug: string;
+  slug?: string | '';
   label: string;
   icon?: React.ReactElement;
 }
@@ -14,7 +14,7 @@ const NavLink: React.FC<NavLinkProps> = ({ slug, label, icon: Icon }) => {
   const isActive = slug === pathName.substring(1);
 
   return (
-    <Link href={slug}>
+    <Link href={slug ?? '#'}>
       <div
         className={` transition text-base  ${
           isActive

@@ -1,3 +1,5 @@
+import { Header } from '@/components/Home/Header';
+import { Sidebar } from '@/components/Home/Sidebar';
 import { BASE_URL } from '@/libs/contants';
 import axios from 'axios';
 import { cookies } from 'next/headers';
@@ -25,7 +27,15 @@ export default async function HomeLayout({
   children: React.ReactNode;
 }) {
   const id = Number(cookies().get('userToken')?.value || null);
-  const user = await getUserDetails(id);
-  console.log(user);
-  return <section>{children}</section>;
+  const { firstName, lastName, email } = await getUserDetails(id);
+
+  return (
+    <section className='bg-gray-400 flex md:h-full'>
+      <Sidebar />
+      <div className='relative md:pl-52 xl:pl-60 bg-gray-200 w-full'>
+        <Header firstName={firstName} />
+        {children}
+      </div>
+    </section>
+  );
 }
