@@ -5,12 +5,15 @@ import { useForm } from 'react-hook-form';
 import zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { TStatus } from '@prisma/client';
+import { BASE_URL } from '@/libs/contants';
+import toast from 'react-hot-toast';
 
-export default function WithdrawalModal() {
+export default function TopModal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const modalRef = useRef<null | HTMLDialogElement>(null);
-  const showModal = searchParams.get('showModalW');
+  const showModal = searchParams.get('topup');
   useEffect(() => {
     if (showModal === 'y') {
       modalRef.current?.showModal();
@@ -28,32 +31,42 @@ export default function WithdrawalModal() {
     closeDialog();
   };
 
-  const currentBal = 55000;
-  const minW = 1999;
-  const schema = zod.object({
-    amount: zod
-      .string()
-      .refine((x) => x !== '', {
-        message: 'Please enter an amount',
-      })
-      .refine((x) => parseFloat(x) > minW, {
-        message: `Minimum withdrawal is ${minW}`,
-      })
-      .refine((x) => parseFloat(x) <= currentBal, {
-        message: 'Amount should not be greater than the current balance.',
-      }),
-  });
+  const schema = zod
+    .object({
+      amount: zod.string(),
+      Bamount: zod.string(),
+    })
+    .refine((data) => data.amount !== '' || data.Bamount !== '', {
+      message: 'At least one of the fields (amount or Bamount) must be filled',
+    });
   type Schema = zod.infer<typeof schema>;
   const resolver = zodResolver(schema);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<Schema>({ mode: 'all', resolver });
 
   const onSubmit = handleSubmit(async (data) => {
-    const { amount } = data;
-    await axios.get('');
+    const userId = Number(searchParams.get('user'));
+    console.log(userId);
+    const { amount, Bamount } = data;
+    await axios
+      .post(`${BASE_URL}/api/transactions/deposits`, {
+        amount: Number(amount),
+        bonus: Number(Bamount),
+        status: TStatus.COMPLETED,
+        userId,
+      })
+      .then((res) => {
+        console.log(res.data);
+        closeDialog();
+        toast.success(res.data.status);
+      })
+      .catch((err) => {
+        closeDialog();
+        toast.error(err.data.status);
+      });
   });
   const modal: JSX.Element | null =
     showModal === 'y' ? (
@@ -71,6 +84,7 @@ export default function WithdrawalModal() {
                 Enter amount
               </label>
               <input
+                disabled={isSubmitting}
                 type='number'
                 {...register('amount')}
                 className={`border appearance-none w-full focus:ring-1 rounded p-2 focus:outline-none outline-none ${
@@ -87,7 +101,32 @@ export default function WithdrawalModal() {
                 )}
               </>
             </div>
+            <div className='space-y-1.5'>
+              <label
+                className='text-xs uppercase text-gray-600'
+                htmlFor='Bamount'>
+                Enter Bonus
+              </label>
+              <input
+                disabled={isSubmitting}
+                type='number'
+                {...register('Bamount')}
+                className={`border appearance-none w-full focus:ring-1 rounded p-2 focus:outline-none outline-none ${
+                  errors['amount']
+                    ? 'border-red-300 border-2'
+                    : 'focus:ring-offset-brand-yellow ring-brand-yellow'
+                }`}
+              />
+              <>
+                {errors['amount'] && (
+                  <span className='text-xs text-red-400'>
+                    <>{errors['Bamount']?.message}</>
+                  </span>
+                )}
+              </>
+            </div>
             <button
+              disabled={isSubmitting}
               className='
               bg-brand-yellow 
               flex 
@@ -99,7 +138,7 @@ export default function WithdrawalModal() {
               text-base 
               font-medium 
               w-full'>
-              Withdraw
+              Top up
             </button>
           </form>
           <button
@@ -126,5 +165,3 @@ export default function WithdrawalModal() {
 
   return modal;
 }
-
-
