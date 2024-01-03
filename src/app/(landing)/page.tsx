@@ -10,7 +10,7 @@ export default function LandingPage() {
               <Image
                 src='/logo.png'
                 alt='logo'
-                width={50}
+                width={100}
                 height={100}
                 className='w-52 h-auto'
               />
@@ -48,11 +48,11 @@ export default function LandingPage() {
           </nav>
         </div>
       </header>
-      <section className="bg-[url('/images/hero-bg.jpg')] bg-cover bg-center ">
-        <div className='backdrop-brightness-50'>
-          <div className='container mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl'>
-            <div className='h-[80vh] flex items-center justify-between text-white'>
-              <div className='w-72 flex flex-col gap-8'>
+      <section className="bg-[url('/images/hero-bg.jpg')] bg-cover bg-center w-full">
+        <div className='backdrop-brightness-50 pt-20 w-full'>
+          <div className=' w-full mx-auto max-w-3xl p-4'>
+            <div className='h-[80vh] flex items-center gap-10 text-white'>
+              <div className='flex-1 w-full flex flex-col gap-8'>
                 <Image
                   className='w-2/3 md:w-72'
                   src='/images/hero-logo.png'
@@ -60,7 +60,7 @@ export default function LandingPage() {
                   height={150}
                   alt='hero-img'
                 />
-                <h4 className='inline text-3xl'>
+                <h4 className='inline text-2xl lg:text-3xl'>
                   We put our investing ideas into action with pure simple mining
                   solutions and a full range of investment plans. Enjoy real
                   benefits and rewards on Algos Crypto&reg;.
@@ -79,10 +79,10 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <div className='hidden animate-fadeInUp text-white md:flex'>
+              <div className='hidden w-full flex-1 animate-fadeInUp text-white md:flex'>
                 <Image
                   src='/images/hero-btc.jpg'
-                  className='h-60 rounded border-2'
+                  className='h-80 rounded w-full border-2'
                   alt=''
                   width={150}
                   height={150}
