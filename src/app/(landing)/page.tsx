@@ -176,9 +176,9 @@ export default function LandingPage() {
                     </h3>
                     <span className='inline text-white'>
                       We understand how important having reliable support
-                      service is to you. Please don&lsquo;t hesitate to contact us
-                      should you have any questions or concerns and we will get
-                      back to you in no time.
+                      service is to you. Please don&lsquo;t hesitate to contact
+                      us should you have any questions or concerns and we will
+                      get back to you in no time.
                     </span>
                   </div>
                   <div className='mt-5'>
@@ -343,8 +343,8 @@ export default function LandingPage() {
 
                 <p className='pt-5 text-lg text-white'>
                   AlgosCrypto&reg; grants you a uniqe oppurtunity to discover a
-                  brand new revenue stream to monitize the 'regular' mining
-                  through the rewarded Crypto Invesments.
+                  brand new revenue stream to monitize the &lsquo;regular&lsquo;
+                  mining through the rewarded Crypto Invesments.
                 </p>
                 <p className='pt-5 text-lg text-white'>
                   AlgosCrypto&reg; also features a stable cloud-mnining that run
