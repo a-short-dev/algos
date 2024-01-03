@@ -176,7 +176,7 @@ export default function LandingPage() {
                     </h3>
                     <span className='inline text-white'>
                       We understand how important having reliable support
-                      service is to you. Please don’t hesitate to contact us
+                      service is to you. Please don&lsquo;t hesitate to contact us
                       should you have any questions or concerns and we will get
                       back to you in no time.
                     </span>
