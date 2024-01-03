@@ -8,7 +8,7 @@ import Link from 'next/link';
 import toast from 'react-hot-toast';
 
 async function getTransactitons(id: number): Promise<any> {
-  const user = await axios.get(`${BASE_URL}/api/transactions?id=${id}`);
+  const user = awahip"{it axios.get(`${BASE_URL}/api/transactions?id=${id}`);
   if (user.status === 200) {
     const { balance, bonus, deposits, recentTransactions } = user.data.data;
 
