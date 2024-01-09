@@ -18,13 +18,51 @@ export default async function Page({ params }: { params: { id: string } }) {
         <div>{user.user.email}</div>
         <div>{user.user.firstName}</div>
         <div>{user.user.lastName}</div>
-        <div>{user.currentBal}</div>
-        <div>{user.totalBonus}</div>
-        <div>{user.totalDeposits}</div>
+        <div>
+          <div className='text-xl'>Current Bal</div>
+          <div className='flex items-center gap-4'>
+            <span className='text-2xl'>${user.currentBal}</span>
+          </div>
+          <div className='flex items-center gap-3'>
+            <button className='bg-blue-700 px-4 text-white py-2 rounded-md'>
+              add
+            </button>
+            <button className='bg-brand-yellow px-4 text-white py-2 rounded-md'>
+              subtract
+            </button>
+          </div>
+        </div>
+        <div>
+          <div className='text-xl'>Total bonus</div>
+          <div className='flex items-center gap-4'>
+            <span className='text-2xl'>${user.totalBonus}</span>
+          </div>
+          <div className='flex items-center gap-3'>
+            <button className='bg-blue-700 px-4 text-white py-2 rounded-md'>
+              add
+            </button>
+            <button className='bg-brand-yellow px-4 text-white py-2 rounded-md'>
+              subtract
+            </button>
+          </div>
+        </div>
+        <div>
+          <div className='text-xl'>Total deposits</div>
+          <div className='flex items-center gap-4'>
+            <span className='text-2xl'>${user.totalDeposists}</span>
+          </div>
+          <div className='flex items-center gap-3'>
+            <button className='bg-blue-700 px-4 text-white py-2 rounded-md'>
+              add
+            </button>
+            <button className='bg-brand-yellow px-4 text-white py-2 rounded-md'>
+              subtract
+            </button>
+          </div>
+        </div>
       </div>
       <div>Pending withdrawals</div>
       <div>Pending deposits</div>
-      
     </div>
   );
 }
