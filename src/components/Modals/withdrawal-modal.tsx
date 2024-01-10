@@ -28,20 +28,18 @@ export default function WithdrawalModal() {
     closeDialog();
   };
 
-  const currentBal = 55000;
-  const minW = 1999;
+  //const currentBal = Infinity;
+  //const minW = Infinity;
   const schema = zod.object({
-    amount: zod
-      .string()
-      .refine((x) => x !== '', {
-        message: 'Please enter an amount',
-      })
-      .refine((x) => parseFloat(x) > minW, {
-        message: `Minimum withdrawal is ${minW}`,
-      })
-      .refine((x) => parseFloat(x) <= currentBal, {
-        message: 'Amount should not be greater than the current balance.',
-      }),
+    amount: zod.string().refine((x) => x !== '', {
+      message: 'Please enter an amount',
+    }),
+    //.refine((x) => parseFloat(x) > minW, {
+    //   message: `Minimum withdrawal is ${minW}`,
+    // })
+    // .refine((x) => parseFloat(x) <= currentBal, {
+    //   message: 'Amount should not be greater than the current balance.',
+    // }),
   });
   type Schema = zod.infer<typeof schema>;
   const resolver = zodResolver(schema);
@@ -126,5 +124,3 @@ export default function WithdrawalModal() {
 
   return modal;
 }
-
-

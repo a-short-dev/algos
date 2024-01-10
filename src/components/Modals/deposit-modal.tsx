@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 export default function DepositModal() {
   const router = useRouter();
@@ -49,7 +50,16 @@ export default function DepositModal() {
 
   const onSubmit = handleSubmit(async (data) => {
     const { amount } = data;
-    await axios.get('');
+    await axios
+      .post('api/transations/deposit', { amount })
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success('Deposit successful');
+        }
+      })
+      .catch((error) => {
+        toast.error('Deposit not successful');
+      });
   });
   const modal: JSX.Element | null =
     showModal === 'y' ? (
