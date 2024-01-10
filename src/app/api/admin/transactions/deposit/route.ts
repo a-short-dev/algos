@@ -1,5 +1,6 @@
 import { prisma } from '@/libs/db';
 import { TStatus, TType } from '@prisma/client';
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -10,7 +11,10 @@ export async function POST(req: NextRequest) {
     userId: number;
   } = await req.json();
 
+
+
   const topUp = await prisma.transaction.create({
+  
     data: {
       amount: body.amount,
       bouns: body.bonus,

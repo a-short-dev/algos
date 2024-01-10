@@ -45,7 +45,7 @@ const LoginForm = () => {
             return router.push('/dashboard');
           } else {
             window.localStorage.setItem(`${ADMIN_LOC_KEY}`, userId);
-            return router.push('/overview');
+            return router.push('/conference/overview');
           }
         }
       })

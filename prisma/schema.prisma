@@ -11,9 +11,18 @@ datasource db {
   //directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+model Wallet {
+  walletId      String  @unique @default(uuid()) @map("wallet_id")
+  walletAddress String  @unique @map("wallet_address")
+  walletType    String  @unique @map("wallet_type")
+  isActive      Boolean @default(true)
+
+  @@id([walletId])
+  @@map("wallet")
+}
+
 model InvesmentPlan {
-  planName       String
-  
+  planName String
 
   @@id([planName])
   @@unique([planName])
