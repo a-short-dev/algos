@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { BASE_URL } from '@/libs/contants';
 
 export default function WithdrawalModal() {
   const router = useRouter();
@@ -51,7 +52,9 @@ export default function WithdrawalModal() {
 
   const onSubmit = handleSubmit(async (data) => {
     const { amount } = data;
-    await axios.get('');
+    await axios.post(`${BASE_URL}/api/transactions/withdrawal`, {
+      amount,
+    });
   });
   const modal: JSX.Element | null =
     showModal === 'y' ? (
