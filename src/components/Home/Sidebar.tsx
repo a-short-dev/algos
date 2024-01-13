@@ -12,6 +12,11 @@ export const Sidebar = () => {
       slug: `${id > 0 ? 'overview' : 'dashboard'}`,
       icon: <FaHome />,
     },
+    {
+      label: `${id > 0 ? 'users' : ''}`,
+      slug: `${id > 0 ? 'users' : ''}`,
+      icon: <FaHome />,
+    },
   ];
 
   return (

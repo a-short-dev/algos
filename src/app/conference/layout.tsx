@@ -30,7 +30,7 @@ export default async function HomeLayout({
   const { firstName, lastName, email } = await getUserDetails(id);
 
   return (
-    <section className='bg-gray-400 flex '>
+    <section className='bg-gray-400 flex overflow-hidden h-screen'>
       <Sidebar />
       <div className='relative md:pl-52 xl:pl-60 bg-gray-200 w-full'>
         <Header firstName={firstName} />

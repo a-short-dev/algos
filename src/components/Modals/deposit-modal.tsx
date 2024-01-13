@@ -29,10 +29,11 @@ export default function DepositModal() {
     closeDialog();
   };
 
-  const minD = 5000;
+  const minD = 500;
   const schema = zod.object({
     amount: zod
       .string()
+      .regex(/\d/, 'only numbers are allowed')
       .refine((x) => x !== '', {
         message: 'Please enter an amount',
       })
@@ -51,7 +52,7 @@ export default function DepositModal() {
   const onSubmit = handleSubmit(async (data) => {
     const { amount } = data;
     await axios
-      .post('api/transations/deposit', { amount })
+      .post('api/transations/deposits', { amount })
       .then((res) => {
         if (res.status === 200) {
           toast.success('Deposit successful');
