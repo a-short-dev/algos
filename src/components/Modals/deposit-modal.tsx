@@ -52,7 +52,7 @@ export default function DepositModal() {
   const onSubmit = handleSubmit(async (data) => {
     const { amount } = data;
     await axios
-      .post('api/transations/deposits', { amount })
+      .post('api/transactions/deposits', { amount })
       .then((res) => {
         if (res.status === 200) {
           toast.success('Deposit successful');

@@ -6,6 +6,7 @@ import zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { BASE_URL } from '@/libs/contants';
+import toast from 'react-hot-toast';
 
 export default function WithdrawalModal() {
   const router = useRouter();
@@ -32,9 +33,12 @@ export default function WithdrawalModal() {
   //const currentBal = Infinity;
   //const minW = Infinity;
   const schema = zod.object({
-    amount: zod.string().refine((x) => x !== '', {
-      message: 'Please enter an amount',
-    }),
+    amount: zod
+      .string()
+      .regex(/\d/, 'only numbers are allowed')
+      .refine((x) => x !== '', {
+        message: 'Please enter an amount',
+      }),
     //.refine((x) => parseFloat(x) > minW, {
     //   message: `Minimum withdrawal is ${minW}`,
     // })
@@ -52,9 +56,18 @@ export default function WithdrawalModal() {
 
   const onSubmit = handleSubmit(async (data) => {
     const { amount } = data;
-    await axios.post(`${BASE_URL}/api/transactions/withdrawal`, {
-      amount,
-    });
+    await axios
+      .post(`${BASE_URL}/api/transactions/withdrawal`, {
+        amount,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success('withdrawal successful');
+        }
+      })
+      .catch((error) => {
+        toast.error('withdrawal not successful');
+      });
   });
   const modal: JSX.Element | null =
     showModal === 'y' ? (

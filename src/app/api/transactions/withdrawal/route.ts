@@ -6,7 +6,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   const body: {
     amount: number;
-    status: TStatus;
   } = await req.json();
   const id = Number(cookies().get('userToken')?.value || 0);
 
@@ -30,21 +29,22 @@ export async function POST(req: NextRequest) {
     throw `insucffienct funds`;
   }
 
-  const withdraw = prisma.transaction.create({
+  const withdraw = await prisma.transaction.create({
     data: {
       amount: body.amount,
-      type: TType.DEPOSIT,
-      status: body.status,
+      type: TType.WITHDRAWAL,
+      status: TStatus.PENDING,
       userId: id,
     },
   });
+  console.log(withdraw);
 
   if (!withdraw) {
     return NextResponse.json({ status: 'Transaction Failed' }, { status: 400 });
   }
 
   return NextResponse.json(
-    { status: 'withdrawal successful' },
+    { status: 'Withdrawal successful' },
     { status: 200 }
   );
 }

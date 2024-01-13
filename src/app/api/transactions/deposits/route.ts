@@ -7,7 +7,6 @@ export async function POST(req: NextRequest) {
   const body: {
     amount: number;
     bonus: number;
-    status: TStatus;
   } = await req.json();
   const id = Number(cookies().get('userToken')?.value || 0);
 
@@ -16,7 +15,7 @@ export async function POST(req: NextRequest) {
       amount: body.amount,
       bouns: body.bonus,
       type: TType.DEPOSIT,
-      status: body.status,
+      status: TStatus.PENDING,
       userId: id,
     },
   });
