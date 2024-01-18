@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className='max-w-4xl mx-auto w-full p-2'>
         <div>
           <h4>Bio</h4>
-          <div>
+          <div className='flex w-full'>
             <div>{user.user.email}</div>
             <div>{user.user.firstName}</div>
             <div>{user.user.lastName}</div>

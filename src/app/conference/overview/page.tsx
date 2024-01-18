@@ -15,6 +15,17 @@ async function getAllUsers(): Promise<any> {
   }
 }
 
+async function getTransactitons(id: number): Promise<any> {
+  const user = await axios.get(`${BASE_URL}/api/admin/transactions`);
+  if (user.status === 200) {
+    const { balance, bonus, deposits, recentTransactions } = user.data.data;
+
+    return { balance, bonus, deposits, recentTransactions };
+  } else {
+    toast.error('something went wrong');
+  }
+}
+
 export default async function Overview() {
   const users = await getAllUsers();
   return (

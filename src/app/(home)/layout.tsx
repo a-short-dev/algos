@@ -34,7 +34,13 @@ export default async function HomeLayout({
   return (
     <section className='bg-gray-400 flex '>
       <Sidebar />
-      <div className='relative md:pl-52 xl:pl-60 bg-gray-200 w-full'>
+      <div
+        className='
+        relative 
+        md:pl-52 
+        xl:pl-60 
+        bg-gray-200 
+        w-full'>
         <Header firstName={firstName} />
         {children}
       </div>

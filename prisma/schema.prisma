@@ -97,4 +97,5 @@ enum TStatus {
 enum TType {
   DEPOSIT
   WITHDRAWAL
+  SUBTRACT
 }

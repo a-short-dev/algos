@@ -73,10 +73,26 @@ export default function WithdrawalModal() {
     showModal === 'y' ? (
       <dialog
         ref={modalRef}
-        className='fixed transition ease-linear -translate-x-50 -translate-y-50 backdrop:bg-black/20 rounded-xl z-50'>
-        <div className='bg-white lg:w-[500px] max-w-full  h-auto rounded-lg p-8'>
+        className='
+        fixed 
+        transition 
+        ease-linear 
+        -translate-x-50 
+        -translate-y-50 
+        backdrop:bg-black/20 
+        rounded-xl z-50'>
+        <div
+          className='
+            bg-white 
+            lg:w-[500px] 
+            max-w-full  
+            h-auto 
+            rounded-lg 
+            p-8'>
           <form
-            className='w-full space-y-6'
+            className='
+            w-full 
+            space-y-6'
             onSubmit={onSubmit}>
             <div className='space-y-1.5'>
               <label
