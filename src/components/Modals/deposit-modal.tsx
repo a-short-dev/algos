@@ -68,6 +68,11 @@ export default function DepositModal() {
         ref={modalRef}
         className='fixed transition ease-linear -translate-x-50 -translate-y-50 backdrop:bg-black/20 rounded-xl z-50'>
         <div className='bg-white lg:w-[500px] max-w-full  h-auto rounded-lg p-8'>
+          <div>
+            <span> Wallet Type: BTC</span>
+            <span>Wallet Address: 1B6Lj7Ly6HGsHc5QL1mXvuEYbbhWYpUAuH </span>
+            <span></span>
+          </div>
           <form
             className='w-full space-y-6'
             onSubmit={onSubmit}>
