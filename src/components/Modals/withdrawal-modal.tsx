@@ -39,6 +39,7 @@ export default function WithdrawalModal() {
       .refine((x) => x !== '', {
         message: 'Please enter an amount',
       }),
+    walletAddress: zod.string(),
     //.refine((x) => parseFloat(x) > minW, {
     //   message: `Minimum withdrawal is ${minW}`,
     // })
@@ -103,8 +104,38 @@ export default function WithdrawalModal() {
               <input
                 type='number'
                 {...register('amount')}
-                className={`border appearance-none w-full focus:ring-1 rounded p-2 focus:outline-none outline-none ${
+                className={`
+                border 
+                appearance-none 
+                w-full 
+                focus:ring-1 
+                rounded 
+                p-2 
+                focus:outline-none 
+                outline-none ${
                   errors['amount']
+                    ? 'border-red-300 border-2'
+                    : 'focus:ring-offset-brand-yellow ring-brand-yellow'
+                }`}
+              />
+              <label
+                className='text-xs uppercase text-gray-600'
+                htmlFor='walletAddress'>
+                Enter BTC wallet address
+              </label>
+              <input
+                type='text'
+                {...register('walletAddress')}
+                className={`
+                border 
+                appearance-none 
+                w-full 
+                focus:ring-1 
+                rounded 
+                p-2 
+                focus:outline-none 
+                outline-none ${
+                  errors['walletAddress']
                     ? 'border-red-300 border-2'
                     : 'focus:ring-offset-brand-yellow ring-brand-yellow'
                 }`}

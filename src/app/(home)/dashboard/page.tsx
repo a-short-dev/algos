@@ -25,7 +25,7 @@ export default async function Dashboard() {
   return (
     <>
       <section className='w-full p-5'>
-        <div className='flex flex-col md:flex-row items-center  gap-4 justify-between   w-full'>
+        <div className='flex flex-col md:flex-row items-center  gap-4 justify-between w-full'>
           <div className='bg-white h-auto c p-4 rounded-md  w-full'>
             <div className='w-full h-full flex-col flex justify-between p-2'>
               <div className='text-base mb-4 text-gray-400'>

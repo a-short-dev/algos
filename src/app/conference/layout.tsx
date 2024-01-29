@@ -1,5 +1,6 @@
 import { Header } from '@/components/Home/Header';
 import { Sidebar } from '@/components/Home/Sidebar';
+import SubtractModal from '@/components/Modals/sub-modal';
 import { BASE_URL } from '@/libs/contants';
 import axios from 'axios';
 import { cookies } from 'next/headers';
@@ -30,12 +31,15 @@ export default async function HomeLayout({
   const { firstName, lastName, email } = await getUserDetails(id);
 
   return (
-    <section className='bg-gray-400 flex overflow-hidden h-screen'>
-      <Sidebar />
-      <div className='relative md:pl-52 xl:pl-60 bg-gray-200 w-full'>
-        <Header firstName={firstName} />
-        {children}
-      </div>
-    </section>
+    <>
+      <section className='bg-gray-400 flex overflow-hidden h-screen'>
+        <Sidebar />
+        <div className='relative md:pl-52 xl:pl-60 bg-gray-200 w-full'>
+          <Header firstName={firstName} />
+          {children}
+        </div>
+      </section>
+      <SubtractModal />
+    </>
   );
 }

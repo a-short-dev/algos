@@ -6,6 +6,8 @@ import zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import Image from 'next/image';
+import barcode from '@/components/Assets/barcode.jpg';
 
 export default function DepositModal() {
   const router = useRouter();
@@ -66,26 +68,57 @@ export default function DepositModal() {
     showModal === 'y' ? (
       <dialog
         ref={modalRef}
-        className='fixed transition ease-linear -translate-x-50 -translate-y-50 backdrop:bg-black/20 rounded-xl z-50'>
-        <div className='bg-white lg:w-[500px] max-w-full  h-auto rounded-lg p-8'>
+        className='
+        fixed 
+        transition 
+        ease-linear
+        -translate-x-50 
+        -translate-y-50 
+        backdrop:bg-black/20 
+        rounded-xl z-50'>
+        <div
+          className='
+        bg-white 
+          lg:w-[500px] 
+          max-w-full 
+          h-auto 
+          rounded-lg 
+          p-8'>
           <div>
             <span> Wallet Type: BTC</span>
-            <span>Wallet Address: 1B6Lj7Ly6HGsHc5QL1mXvuEYbbhWYpUAuH </span>
-            <span></span>
+            <span>Wallet Address: 1B6Lj7Ly6HGsHc5QL1mXvuEYbbhWYpUAuH</span>
+            <span>
+              <Image
+                src={barcode}
+                alt='barcode'
+                className='rounded-lg'
+              />
+            </span>
           </div>
           <form
             className='w-full space-y-6'
             onSubmit={onSubmit}>
             <div className='space-y-1.5'>
               <label
-                className='text-xs uppercase text-gray-600'
+                className='
+                text-xs 
+                uppercase 
+                text-gray-600'
                 htmlFor='amount'>
                 Enter amount
               </label>
               <input
                 type='number'
                 {...register('amount')}
-                className={`border appearance-none w-full focus:ring-1 rounded p-2 focus:outline-none outline-none ${
+                className={`
+                border 
+                appearance-none 
+                w-full 
+                focus:ring-1 
+                rounded 
+                p-2 
+                focus:outline-none 
+                outline-none ${
                   errors['amount']
                     ? 'border-red-300 border-2'
                     : 'focus:ring-offset-brand-yellow ring-brand-yellow'
@@ -99,13 +132,34 @@ export default function DepositModal() {
                 )}
               </>
             </div>
-            <button className='bg-brand-yellow flex items-center justify-center p-2 rounded hover:bg-opacity-60 text-white text-base font-medium w-full'>
+            <button
+              className='
+              bg-brand-yellow 
+              flex 
+              items-center 
+              justify-center 
+              p-2 
+              rounded 
+              hover:bg-opacity-60 
+              text-white 
+              text-base 
+              font-medium w-full'>
               Deposit
             </button>
           </form>
           <button
             onClick={closeDialog}
-            className='bg-red-300 mt-5 flex items-center justify-center p-2 rounded hover:bg-opacity-60 text-white text-base font-medium w-full'>
+            className='
+            bg-red-300 
+            mt-5 
+            flex 
+            items-center 
+            justify-center 
+            p-2 rounded 
+            hover:bg-opacity-60 
+            text-white 
+            text-base 
+            font-medium w-full'>
             Cancel
           </button>
         </div>

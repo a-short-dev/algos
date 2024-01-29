@@ -1,5 +1,6 @@
 import { BASE_URL } from '@/libs/contants';
 import axios from 'axios';
+import Link from 'next/link';
 
 export default async function Page({ params }: { params: { id: string } }) {
   // const user = await fetchUserDetails(params.id);
@@ -15,16 +16,32 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <div className='w-full p-5 space-y-3'>
       <div className='max-w-4xl mx-auto w-full p-2'>
-        <div>
-          <h4>Bio</h4>
-          <div className='flex w-full'>
-            <div>{user.user.email}</div>
-            <div>{user.user.firstName}</div>
-            <div>{user.user.lastName}</div>
+        <div className='my-3'>
+          <h4 className='text-2xl mb-4'>Bio</h4>
+          <div className='flex w-full justify-between'>
+            <div>
+              <div className='text-sm capitalize text-gray-400'>Email</div>
+              <span>{user.user.email}</span>
+            </div>
+            <div>
+              <div className='text-sm capitalize text-gray-400'>First name</div>
+              {user.user.firstName}
+            </div>
+            <div>
+              <div className='text-sm capitalize text-gray-400'>Last name</div>
+              {user.user.lastName}
+            </div>
           </div>
         </div>
-        <div>
-          <h4>Finances</h4>
+        <div className=''>
+          <div>
+            <h4 className='text-2xl'>Finances</h4>
+            <Link
+              href='?showModalS=y'
+              className='rounded border p-2'>
+              Subtract
+            </Link>
+          </div>
           <div>
             {/**
              * <div className='space-y-3'>
