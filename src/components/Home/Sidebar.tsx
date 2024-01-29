@@ -1,4 +1,4 @@
-import { FaDashcube, FaHome } from 'react-icons/fa';
+import { FaDashcube, FaHome, FaList } from 'react-icons/fa';
 import NavLink from '../Navlink';
 import { IconType } from 'react-icons';
 import { cookies } from 'next/headers';
@@ -15,12 +15,12 @@ export const Sidebar = () => {
     {
       label: `${id > 0 ? 'users' : 'transactions'}`,
       slug: `${id > 0 ? 'users' : 'transactions'}`,
-      icon: <FaHome />,
+      icon: <FaList />,
     },
     {
       label: `${id > 0 ? 'wallets' : ''}`,
       slug: `${id > 0 ? 'wallets' : ''}`,
-      icon: <FaHome />,
+      icon: undefined
     },
   ];
 

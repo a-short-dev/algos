@@ -7,7 +7,7 @@ import { IconType } from 'react-icons';
 interface NavLinkProps {
   slug?: string | '';
   label: string;
-  icon?: React.ReactElement;
+  icon?: React.ReactElement | undefined;
 }
 const NavLink: React.FC<NavLinkProps> = ({ slug, label, icon: Icon }) => {
   const pathName = usePathname();
@@ -16,7 +16,11 @@ const NavLink: React.FC<NavLinkProps> = ({ slug, label, icon: Icon }) => {
   return (
     <Link href={slug ?? '#'}>
       <div
-        className={` transition text-base  ${
+        className={`
+        transition 
+        text-base 
+        uppercase  
+        ${
           isActive
             ? 'bg-blue-400 text-white rounded-md text-lg  p-4'
             : 'hover:bg-blue-100 p-2 rounded text-gray-800'
