@@ -13,8 +13,13 @@ export const Sidebar = () => {
       icon: <FaHome />,
     },
     {
-      label: `${id > 0 ? 'users' : ''}`,
-      slug: `${id > 0 ? 'users' : ''}`,
+      label: `${id > 0 ? 'users' : 'transactions'}`,
+      slug: `${id > 0 ? 'users' : 'transactions'}`,
+      icon: <FaHome />,
+    },
+    {
+      label: `${id > 0 ? 'wallets' : ''}`,
+      slug: `${id > 0 ? 'wallets' : ''}`,
       icon: <FaHome />,
     },
   ];

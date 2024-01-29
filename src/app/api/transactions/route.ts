@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 
   const currentBal = transactions.reduce((balance, transaction) => {
     if (transaction.type === 'DEPOSIT') {
-      return balance + Number(transaction.amount) + Number(transaction.bonus || 0);
+      return balance + Number(transaction.amount) + Number(transaction.bouns || 0);
     } else if (transaction.type === 'SUBTRACT') {
       return balance - Number(transaction.amount);
     } else {
