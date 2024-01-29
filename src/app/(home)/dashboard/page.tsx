@@ -67,7 +67,7 @@ export default async function Dashboard() {
         </div>
         <div className='grid grid-cols-1 md:grid-cols-3 w-full gap-4 mt-10 md:mt-20'>
           <div className='bg-white/60 relative rounded-md col-spa md:col-span-2 p-4 '>
-            <h4 className='text-lg md:text-2xl'>Recent Transactions</h4>
+            <h4 className='text-lg md:text-2xl'>ReTransactions</h4>
             <hr className='my-4 ' />
             <div className='overflow-x-scroll'>
               <table className='min-w-full divide-y  overflow-x-scroll divide-gray-200'>

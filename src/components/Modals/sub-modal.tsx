@@ -1,5 +1,5 @@
 'use client';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { FormInput } from '../Form/FormInput';
 import * as zod from 'zod';
@@ -23,6 +23,8 @@ type Schema = zod.infer<typeof schema>;
 const SubtractModal = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathName = usePathname();
+  const id = pathName.split('/')[3];
   const modalRef = useRef<null | HTMLDialogElement>(null);
   const showModal = searchParams.get('showModalS');
   useEffect(() => {
@@ -51,10 +53,11 @@ const SubtractModal = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const { amount, Bamount } = data;
-    const res = await axios.post(`${BASE_URL}/admin/transactions/withdrawal`, {
+    const res = await axios.post(`${BASE_URL}/api/admin/transactions/withdrawal`, {
       amount: Number(amount),
       bonus: Number(Bamount),
       status: TStatus.COMPLETED,
+      id: Number(id),
       type: TType.SUBTRACT,
     });
   });
