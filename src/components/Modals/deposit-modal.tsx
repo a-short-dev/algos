@@ -98,7 +98,7 @@ export default function DepositModal() {
           <form
             className='w-full space-y-6'
             onSubmit={onSubmit}>
-            <div className='space-y-1.5'>
+            <div className='space-y-1.5 hidden'>
               <label
                 className='
                 text-xs 
@@ -134,8 +134,9 @@ export default function DepositModal() {
             </div>
             <button
               className='
+              hidden
               bg-brand-yellow 
-              flex 
+              
               items-center 
               justify-center 
               p-2 
